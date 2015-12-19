@@ -67,6 +67,16 @@ void Automat::loadFromFile(const std::string& fileName)
 		addTranslation(state, Symbol(*it), Symbol(*it), state, "");
 	}
 	addTranslation(state, Symbol(0, true, false), Symbol(0, false, true), state, "");
+
+	for (auto it = m_graph.begin(); it != m_graph.end(); it++)
+	{
+		std::cout << "(s" << it->first.first.getNum() << ", ";
+		std::cout << it->first.second.first.getChar() << ", ";
+		std::cout << it->first.second.second.getChar() << ") -> ";
+		std::cout << "(s" << it->second.first.getNum() << ", ";
+		std::cout << it->second.second << ")" << std::endl;
+	}
+	std::cout << std::endl;
 }
 
 void Automat::addTranslation(const State& firstState, const Symbol& c, const Symbol& h, const State& secondState, const std::string& chain)
